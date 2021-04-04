@@ -24,7 +24,9 @@
     "dependencies": {
         "@material-ui/core": "^4.11.3",
         "@material-ui/icons": "^4.11.2",
+        "react-addons-update": "^15.6.3",
         "react-redux": "^7.2.3",
+        "react-router-dom": "^5.2.0",
         "redux": "^4.0.5"
     }
 }

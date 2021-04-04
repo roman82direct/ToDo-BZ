@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 .main-page {
-  height: 80vw;
+  height: 90vh;
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 1fr 2fr 60px;
   grid-auto-columns: 400px auto;
-  grid-template-areas: "predef tasks" "lists tasks";
+  grid-template-areas: "predef tasks" "lists tasks" "footer footer";
 }
 
 .lists-predefined {
@@ -14,7 +14,15 @@
 .lists-user {
   grid-area: lists;
 }
+.lists-user__link {
+  text-decoration: none;
+  color: #212529;
+}
 
 .tasks {
   grid-area: tasks;
+}
+
+.header {
+  grid-area: header;
 }

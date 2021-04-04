@@ -8,9 +8,16 @@ class Tasks extends Component {
     }
 
     render() {
+        console.log(!!this.props.listId);
         return (
             <div className="tasks">
-                tasks
+                <p>tasks</p>
+                { !!this.props.listId && (
+                    <div>
+                        <p>userId - { this.props.userId }</p>
+                        <p>listId - { this.props.listId }</p>
+                    </div>
+                )}
             </div>
         );
     }

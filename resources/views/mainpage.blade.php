@@ -65,10 +65,10 @@
                                         <label>User_id</label>
                                         <input type="hidden" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>List_id</label>--}}
-{{--                                        <input type="text" class="form-control" id="list_id" name="list_id">--}}
-{{--                                    </div>--}}
+                                    <div class="form-group">
+                                        <label>List_id</label>
+                                        <input type="text" class="form-control" id="list_id" name="list_id">
+                                    </div>
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>list_Name</label>--}}
 {{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
@@ -134,7 +134,7 @@
             {{--            Если пользователь авторизован, получаем объект User--}}
         @if(\Illuminate\Support\Facades\Auth::user())
             <script>
-                var user = {
+                const user = {
                     user_id:  {{ \Illuminate\Support\Facades\Auth::user()->id }},
                     user_name: '{{ \Illuminate\Support\Facades\Auth::user()->name }}',
                     user_email: '{{ \Illuminate\Support\Facades\Auth::user()->email }}',
@@ -142,7 +142,7 @@
             </script>
         @else
             <script>
-                var user ={
+                const user ={
                     user_id: null,
                     user_name: 'Guest',
                     user_email: null

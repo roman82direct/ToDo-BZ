@@ -68,18 +68,18 @@ Route::group([
 //Terms, Repeats, Dicreminds Routes
 Route::get('/terms', function(){
     return \App\Models\Term::all()->toJson();
-});
+})->middleware('auth');
 Route::get('/repeats', function (){
     return \App\Models\Repeat::all()->toJson();
-});
+})->middleware('auth');
 Route::get('/reminddics', function (){
    return \App\Models\Reminddic::all()->toJson();
-});
+})->middleware('auth');
 
 //Users Routes
 Route::group([
     'prefix' => '/api/user',
-//    'middleware' => ['auth']
+    'middleware' => ['auth']
 ], function (){
     Route::get('/all', [UserController::class, 'getAllUsers']);
     Route::get('/{user_id}', [UserController::class, 'getUserById']);

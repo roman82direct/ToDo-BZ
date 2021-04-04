@@ -17,6 +17,7 @@
 
 //import ListsComponent from "./components/ListsComponent";
 
-require('./components/index')
+require('./components/index');
+//require('./test_backend/index');
 
 require('./testAjax');

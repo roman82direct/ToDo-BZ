@@ -47,8 +47,8 @@ class TodolistController extends Controller
     public function getPredefinedLists(int $predefined)
     {
         $predefinedLists = (new Todolist())->getPredefinedList($predefined);
-        $response = $predefinedLists->count() > 0 ? $predefinedLists
-                    : response()->json(['error'=>'Ничего не найдено.'], 404);
+        $response = $predefinedLists->count() > 0 ? response()->json($predefinedLists, 200)
+                    : response()->json(['Message'=>'Ничего не найдено.'], 404);
 
         return $response;
     }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import List from "./List";
 
 class ListsComponent extends Component {
     constructor() {
@@ -53,7 +52,7 @@ class ListsComponent extends Component {
                             {this.renderLists()}
                         </ul>
                     </div>
-                    <List list={this.state.currentList}/>
+                    <TestList list={this.state.currentList}/>
                 </div>
             );
         }
