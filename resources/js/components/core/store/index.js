@@ -1,5 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import initReducers from './reducers';
+import middleWares from '../middleware';
+
+
+const reduxDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (x) => x;
 
 export default function ourStore() {
     const initStore = {};
@@ -7,5 +11,9 @@ export default function ourStore() {
     return createStore(
         initReducers,
         initStore,
+        compose(
+            applyMiddleware(...middleWares),
+            reduxDevTools,
+        ),
     );
 }

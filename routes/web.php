@@ -19,6 +19,14 @@ Route::get('/', function () {
     return view('mainpage');
 })->name('mainpage');
 
+//React unusefull routes
+Route::match(['GET', 'POST'],'/list/{id}', function (){
+    return view('mainpage');
+});
+Route::match(['GET', 'POST'],'/task/{id}', function (){
+    return view('mainpage');
+});
+
 //System Route for deploy
 Route::get('/clear', function () {
     Artisan::call('cache:clear');

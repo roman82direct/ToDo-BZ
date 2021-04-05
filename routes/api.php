@@ -85,3 +85,5 @@ Route::group([
     Route::get('/{user_id}', [UserController::class, 'getUserById']);
     Route::get('/', 'UserController@getCurrentUser');
 });
+
+

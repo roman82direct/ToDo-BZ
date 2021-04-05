@@ -27,6 +27,7 @@
         "react-addons-update": "^15.6.3",
         "react-redux": "^7.2.3",
         "react-router-dom": "^5.2.0",
-        "redux": "^4.0.5"
+        "redux": "^4.0.5",
+        "redux-api-middleware": "^3.2.1"
     }
 }

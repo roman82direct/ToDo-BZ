@@ -31,10 +31,11 @@ mix.webpackConfig({
                         ]
                     ],
                     presets: ["@babel/preset-env", "@babel/preset-react"]
-                }
+                },
             }
         ]
     },
+
     resolve: {
         alias: {
             '@actions': path.resolve(__dirname, 'resources', 'js', 'components', 'core', 'store', 'actions'),
@@ -42,3 +43,4 @@ mix.webpackConfig({
         }
     },
 });
+

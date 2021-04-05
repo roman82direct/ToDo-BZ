@@ -1,37 +1,31 @@
 import update from 'react-addons-update';
 
 const storeLists = {
-    lists: [
-        {
-            created_at: "2021-03-29T20:12:10.000000Z",
-            id: 7,
-            name: "Финансы",
-            pattern_id: 9,
-            predefined: null,
-            updated_at: "2021-03-29T20:12:10.000000Z",
-            user_id: 1,
-        },
-        {
-            created_at: "2021-03-29T20:12:10.000000Z",
-            id: 8,
-            name: "Спорт",
-            pattern_id: 5,
-            predefined: null,
-            updated_at: "2021-03-29T20:12:10.000000Z",
-            user_id: 1,
-        },
-    ],
+    lists: [],
+    predefinedLists: []
 };
 
 export default (store = storeLists, action) => {
     switch (action.type) {
-        case 'ADD_LIST': {
+        case 'ADD_LIST_SUCCESS': {
             return update(store, {
-                lists: { $push: [action.paramList] }
+                lists: { $push: [action.payload.data] }
             });
         }
-        case 'LOAD_LISTS': {
-            return store;
+        case 'LOAD_LISTS_SUCCESS': {
+            return update(store, {
+                lists: { $set: action.payload.data }
+            });
+        }
+        case 'LOAD_PREDEFINED_LISTS_SUCCESS': {
+            return update(store, {
+                predefinedLists: { $set: action.payload.data }
+            });
+        }
+        case 'LOAD_LISTS_FAILURE': {
+            return update(store, {
+                predefinedLists: { $set: action.payload.data }
+            });
         }
         default: {
             return store;
