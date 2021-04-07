@@ -14,13 +14,14 @@ class TodolistsTableSeeder extends Seeder
      */
     public function run()
     {
-        Todolist::truncate();
+//        Todolist::truncate();
 
         $names = ['Родственники', 'Работа', 'Покупки', 'Спорт', 'Финансы', 'Развлечения'];
         for ($i = 0; $i < 6; $i++){
             Todolist::create([
                 'name' => $names[$i],
-                'user_id' => rand(1,10),
+                'user_id' => 1,
+                'predefined' => rand(0, 1),
                 'pattern_id' => rand(1, 10)
             ]);
         }

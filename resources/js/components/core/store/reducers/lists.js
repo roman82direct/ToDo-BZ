@@ -23,9 +23,7 @@ export default (store = storeLists, action) => {
             });
         }
         case 'LOAD_LISTS_FAILURE': {
-            return update(store, {
-                predefinedLists: { $set: action.payload.data }
-            });
+            console.log(action.payload.data)
         }
         default: {
             return store;

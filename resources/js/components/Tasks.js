@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import TaskItem from "./TaskItem";
+import List from '@material-ui/core/List';
 
 class Tasks extends Component {
     constructor(props) {
@@ -6,19 +8,21 @@ class Tasks extends Component {
         this.state = {
         }
     }
-
-    render() {
-        console.log(!!this.props.listId);
+    render() {       
         return (
             <div className="tasks">
                 <p>tasks</p>
+                <List component="div">                 
+                        <TaskItem user={ this.props.userId } taskId='111'  />                  
+                </List>
+                
                 { !!this.props.listId && (
                     <div>
                         <p>userId - { this.props.userId }</p>
                         <p>listId - { this.props.listId }</p>
                     </div>
                 )}
-            </div>
+           </div>
         );
     }
 }

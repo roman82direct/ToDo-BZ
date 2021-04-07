@@ -10,11 +10,7 @@ class TodolistController extends Controller
 {
     public function getListsByUser()
     {
-        $userLists = Todolist::where('user_id', Auth::id())->get();
-        $response = $userLists->count() > 0 ? $userLists
-                    : response()->json(null, 200);
-
-        return $response;
+        return Todolist::getLists(0, Auth::id());
     }
 
     public function getListById($list_id)
@@ -24,9 +20,9 @@ class TodolistController extends Controller
 
     public function createList(ListsRequest $request)
     {
-        $list = Todolist::create($request->all());
+            $list = Todolist::create($request->all());
 
-        return response()->json($list, 201);
+            return response()->json($list, 201);
     }
 
     public function updateList(ListsRequest $request, $list_id)
@@ -41,15 +37,11 @@ class TodolistController extends Controller
     {
         Todolist::findOrFail($list_id)->delete();
 
-        return response(['success'=>'Список успешно удален'],202);
+        return response(['success'=>'Deleted successfully'],202);
     }
 
-    public function getPredefinedLists(int $predefined)
+    public function getLists(int $predefined)
     {
-        $predefinedLists = (new Todolist())->getPredefinedList($predefined);
-        $response = $predefinedLists->count() > 0 ? response()->json($predefinedLists, 200)
-                    : response()->json(['Message'=>'Ничего не найдено.'], 404);
-
-        return $response;
+        return Todolist::getLists($predefined, Auth::id());
     }
 }

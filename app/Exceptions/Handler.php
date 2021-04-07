@@ -50,19 +50,19 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof ModelNotFoundException) {
             return response()->json([
-                'error' => 'Ничего не найдено!!!'
+                'error' => 'Not Found'
             ], 404);
         }
 
-            if ($exception instanceof HttpException) {
-                return response()->json([
-                    'error' => 'Неверный запрос: '.$exception->getMessage()
-                ], 400);
-            }
+        if ($exception instanceof HttpException) {
+            return response()->json([
+                'error' => 'Incorrect request: '.$exception->getMessage()
+            ], 400);
+        }
 
         if ($exception instanceof MethodNotAllowedHttpException) {
             return response()->json([
-                'error' => 'Некорректный роут: '.$exception->getMessage()
+                'error' => 'Incorrect route: '.$exception->getMessage()
             ], 500);
         }
 

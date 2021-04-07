@@ -25,7 +25,7 @@ class ListsRequest extends FormRequest
     {
         return [
             'id' => 'numeric | min:0 | not_in:0',
-            'name' => 'string | min:5 | max:255',
+            'name' => 'string | min:3 | max:255',
             'user_id' => 'numeric | min:0 | not_in:0',
             'pattern_id' => 'numeric | min:0 | not_in:0',
             'predefined' => 'boolean'

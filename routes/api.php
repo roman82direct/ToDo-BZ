@@ -25,16 +25,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Lists Routes
 Route::group([
     'prefix' => '/lists',
-    'middleware' => ['auth']
+//    'middleware' => ['auth']
 ], function (){
     Route::get('/', [TodolistController::class, 'getListsByUser']);
     Route::get('/{list_id}', [TodolistController::class, 'getListById']);
+    Route::get('/predefined/{predefined}', [TodolistController::class, 'getLists']);
     Route::post('/', [TodolistController::class, 'createList'])
-        ->middleware('checkListTitle');
+        ->middleware(['auth', 'checkListTitle']);
     Route::put('/{list_id}', [TodolistController::class, 'updateList'])
-        ->middleware('checkListTitle');
-    Route::delete('/{list_id}', [TodolistController::class, 'delete']);
-    Route::get('/predefined/{predefined}', [TodolistController::class, 'getPredefinedLists']);
+        ->middleware('auth');
+    Route::delete('/{list_id}', [TodolistController::class, 'delete'])
+        ->middleware('auth');
+
 });
 
 //Tasks Routes

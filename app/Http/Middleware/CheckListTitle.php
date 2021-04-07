@@ -17,15 +17,12 @@ class CheckListTitle
      */
     public function handle(Request $request, Closure $next)
     {
-        $userLists = Todolist::where('user_id', $request->get('user_id'))->get();
-        $exists = false;
-        foreach ($userLists as $item) {
-            if ($item->name == $request->get('name') && $item->id != $request->get('list_id')) {
-                $exists = true;
-            }
-        }
+        $countLists = Todolist::where('user_id', $request->get('user_id'))
+            ->where('name', $request->get('name'))
+            ->count();
+        $exists = ($countLists > 0) ? true : false;
         if ($exists){
-            abort(400, 'Такой список уже существует');
+            abort(400, 'Already exists');
         }
 
         return $next($request);

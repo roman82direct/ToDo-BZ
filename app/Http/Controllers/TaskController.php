@@ -36,7 +36,7 @@ class TaskController extends Controller
     {
         Task::findOrFail($task_id)->delete();
 
-        return response()->json(['success'=>'Задача с id = '.$task_id .' успешно удалена'], 200);
+        return response()->json(['success'=>'Deleted successfully'], 202);
     }
 
 }
