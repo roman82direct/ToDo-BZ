@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use function PHPUnit\Framework\isNull;
 
 /**
  * App\Models\Todolist
@@ -39,16 +40,19 @@ class Todolist extends Model
 
     static function getLists($predefined, $user_id)
     {
-        if ($predefined){
-            $lists = Todolist::where('user_id', 1)
+        if ($user_id){
+            if (!($predefined === 'all')){
+                return Todolist::where('user_id', $user_id)
+                    ->where('predefined', $predefined)
+                    ->get();
+            } else
+                return Todolist::where('user_id', $user_id)->get();
+        } else if ($predefined == 1){
+            return Todolist::where('user_id', 1)
                 ->where('predefined', $predefined)
                 ->get();
-        } else {
-            $lists = Todolist::where('user_id', $user_id)
-                ->where('predefined', $predefined)
-                ->get();
-        }
-        return $lists;
+        } else
+            return null;
     }
 
 }

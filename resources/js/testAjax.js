@@ -42,11 +42,12 @@ jQuery(document).ready(function($){
             // url: '/api/tasks/',
             // url: '/api/tasks/' + formData.task_id,
             // url: '/api/tasks/list/' + formData.list_id,
-            url:'/api/lists',
+            // url:'/api/lists',
             // url: '/api/lists/predefined/' + predefined,
             // url: '/api/lists/'+formData.list_id,
             // url: '/api/reminds/task/270',
             // url: 'api/reminddics',
+            url: 'api/tasks/user/' + formData.user_id,
 
             data: formData,
             dataType: 'json',

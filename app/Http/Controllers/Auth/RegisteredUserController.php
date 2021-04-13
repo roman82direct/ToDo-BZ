@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Todolist;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -43,6 +44,16 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]));
+
+        $predefines = ['На сегодня', 'На неделю', 'На месяц', 'Важно'];
+        for ($i = 0; $i < 4; $i++) {
+            Todolist::create([
+                'name' => $predefines[$i],
+                'user_id' => Auth::id(),
+                'predefined' => 1,
+                'pattern_id' => rand(1, 10)
+            ]);
+        }
 
         event(new Registered($user));
 

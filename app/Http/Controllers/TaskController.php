@@ -4,9 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TasksRequest;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
+
+    public function getByUser()
+    {
+        return Task::getAllTasksByUser(Auth::id());
+    }
+
     public function getByListId($list_id)
     {
         return Task::where('list_id', $list_id)->get();

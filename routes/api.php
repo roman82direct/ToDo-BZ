@@ -46,6 +46,7 @@ Route::group([
 ], function (){
     Route::get('/{task_id}', [TaskController::class, 'getById']);
     Route::get('/list/{list_id}', [TaskController::class, 'getByListId']);
+    Route::get('/user/{user_id}', [TaskController::class, 'getByUser']);
     Route::post('/', [TaskController::class, 'create'])
         ->middleware('checkTaskTitle');
     Route::put('/{task_id}', [TaskController::class, 'update'])

@@ -38,8 +38,14 @@ mix.webpackConfig({
 
     resolve: {
         alias: {
-            '@actions': path.resolve(__dirname, 'resources', 'js', 'components', 'core', 'store', 'actions'),
-            '@middlewares': path.resolve(__dirname, 'resources', 'js', 'components', 'core', 'middleware'),
+            '@actions': path.resolve(__dirname, 'resources', 'js', 'core', 'store', 'actions'),
+            '@middlewares': path.resolve(__dirname, 'resources', 'js', 'core', 'middleware'),
+            '@store': path.resolve(__dirname, 'resources', 'js', 'core', 'store'),
+            '@core': path.resolve(__dirname, 'resources', 'js', 'core'),
+            '@root': path.resolve(__dirname, 'resources', 'js'),
+            '@logged_in': path.resolve(__dirname, 'resources', 'js', 'logged_in'),
+            '@logged_out': path.resolve(__dirname, 'resources', 'js', 'logged_out'),
+            '@shared': path.resolve(__dirname, 'resources', 'js','shared'),
         }
     },
 });

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 /**
  * App\Models\Task
@@ -33,11 +34,16 @@ class Task extends Model
         'favorites'
     ];
 
-    public static function validationRules()
+    static function getAllTasksByUser($user_id)
     {
-        return [
+        $tasks = [];
+        $lists = Todolist::where('user_id', $user_id)->get();
+        foreach ($lists as $list) {
+            $task = Task::where('list_id', $list->id)->get();
+            array_push($tasks, [$list->id, $task]);
+        }
 
-        ];
+        return $tasks;
     }
 
 }

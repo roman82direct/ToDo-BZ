@@ -13,6 +13,6 @@
  */
 
 
-require('./components/index');
+require('./logged_in/index');
 
 require('./testAjax');

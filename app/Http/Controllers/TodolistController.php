@@ -10,7 +10,7 @@ class TodolistController extends Controller
 {
     public function getListsByUser()
     {
-        return Todolist::getLists(0, Auth::id());
+        return Todolist::getLists('all', Auth::id());
     }
 
     public function getListById($list_id)
