@@ -5,17 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ListsRequest;
 use App\Models\Todolist;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class TodolistController extends Controller
 {
-    public function getListsByUser()
-    {
-        return Todolist::getLists('all', Auth::id());
-    }
-
-    public function getListById($list_id)
-    {
-        return Todolist::findOrFail($list_id);
+    /*
+     * api/lists?filter=1 для predefine-листов
+     * api/lists?filter=0 для обычных листов
+     * api/lists?filter=all для всех листов юзера
+    */
+    public function getLists(){
+        return Todolist::getLists($_GET['filter'], Auth::id());
     }
 
     public function createList(ListsRequest $request)
@@ -25,7 +25,7 @@ class TodolistController extends Controller
             return response()->json($list, 201);
     }
 
-    public function updateList(ListsRequest $request, $list_id)
+    public function updateList(Request $request, $list_id)
     {
         $list = Todolist::findOrFail($list_id);
         $list->update($request->all());
@@ -38,10 +38,5 @@ class TodolistController extends Controller
         Todolist::findOrFail($list_id)->delete();
 
         return response(['success'=>'Deleted successfully'],202);
-    }
-
-    public function getLists(int $predefined)
-    {
-        return Todolist::getLists($predefined, Auth::id());
     }
 }

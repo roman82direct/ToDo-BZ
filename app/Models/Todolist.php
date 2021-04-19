@@ -38,18 +38,18 @@ class Todolist extends Model
         'predefined'
     ];
 
-    static function getLists($predefined, $user_id)
+    static function getLists($filter, $user_id)
     {
         if ($user_id){
-            if (!($predefined === 'all')){
+            if (!($filter === 'all')){
                 return Todolist::where('user_id', $user_id)
-                    ->where('predefined', $predefined)
+                    ->where('predefined', $filter)
                     ->get();
             } else
                 return Todolist::where('user_id', $user_id)->get();
-        } else if ($predefined == 1){
+        } else if ($filter == 1){
             return Todolist::where('user_id', 1)
-                ->where('predefined', $predefined)
+                ->where('predefined', $filter)
                 ->get();
         } else
             return null;

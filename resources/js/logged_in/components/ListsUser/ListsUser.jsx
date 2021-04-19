@@ -59,7 +59,7 @@ class ListsUser extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists/predefined/0');
+        this.props.loadLists('/api/lists?filter=0');
     }
 
     render() {
@@ -86,14 +86,11 @@ class ListsUser extends Component {
                         <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />
                         </ListItemIcon>
-                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
+                        <ListItemText primary={elem.name} />
                     </ListItem>
                 </Tooltip>
 
             </Link>
-
-
-
         )
         ) : ['Списков задач пока нет...'];
 

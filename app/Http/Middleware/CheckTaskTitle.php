@@ -18,16 +18,13 @@ class CheckTaskTitle
      */
     public function handle(Request $request, Closure $next)
     {
-        $tasks = Task::where('list_id', $request->get('list_id'))->get();
-        $exists = false;
-        foreach ($tasks as $item) {
-            if ($item->name == $request->get('name') && $item->id != $request->get('task_id')) {
-                $exists = true;
-            }
+        $count = Task::where('list_id', $request->get('list_id'))
+            ->where('name', $request->get('name'))
+            ->count();
+        if ($count > 0){
+            abort(400, 'Already exists');
         }
-        if ($exists){
-            abort(400, 'Такая задача уже существует');
-        }
+
         return $next($request);
     }
 }

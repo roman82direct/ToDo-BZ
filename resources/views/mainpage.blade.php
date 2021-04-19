@@ -67,59 +67,55 @@
                         </div>
                     </div>
 
+            @if (Route::has('register'))
+            <!-- Button trigger modal -->
+                <button style="margin-left: 10px" type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Регистрация</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div style="margin-top: 40%" class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <!-- Name -->
+                                        <div>
+                                            <label for="name" class="form-label">Name</label>
+                                            <input id="name" class="form-control" type="text" name="name" required autofocus />
+                                        </div>
+                                        <!-- Email Address -->
+                                        <div class="mt-4">
+                                            <label class="form-label" for="email">Email</label>
+                                            <input id="email" class="form-control" type="email" name="email" required/>
+                                        </div>
+                                        <!-- Password -->
+                                        <div class="mt-4">
+                                            <label  class="form-label" for="password">Password</label>
+                                            <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
+                                        </div>
+                                        <!-- Confirm Password -->
+                                        <div class="mt-4">
+                                            <label for="password_confirmation" class="form-label">Password confirmation</label>
+                                            <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required />
+                                        </div>
 
-    @if (Route::has('register'))
-        <!-- Button trigger modal -->
-        <button style="margin-left: 10px" type="button" class="btn btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#registerModal">Регистрация</button>
+                                        <div class="flex items-center justify-end mt-4">
+                                            <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                                                {{ __('Already registered?') }}
+                                            </a>
+                                            <button style="margin-left: 45%" class="btn btn-outline-secondary btn-sm">
+                                                {{ __('Register') }}
+                                            </button>
+                                        </div>
+                                    </form>
 
-        <!-- Modal -->
-        <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div style="margin-top: 40%" class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <!-- Name -->
-                            <div>
-                                <label for="name" class="form-label">Name</label>
-                                <input id="name" class="form-control" type="text" name="name" required autofocus />
-                            </div>
-                            <!-- Email Address -->
-                            <div class="mt-4">
-                                <label class="form-label" for="email">Email</label>
-                                <input id="email" class="form-control" type="email" name="email" required/>
-                            </div>
-                            <!-- Password -->
-                            <div class="mt-4">
-                                <label  class="form-label" for="password">Password</label>
-                                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
-                            </div>
-                            <!-- Confirm Password -->
-                            <div class="mt-4">
-                                <label for="password_confirmation" class="form-label">Password confirmation</label>
-                                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required />
-                            </div>
-
-                            <div class="flex items-center justify-end mt-4">
-                                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                                    {{ __('Already registered?') }}
-                                </a>
-                                <button style="margin-left: 45%" class="btn btn-outline-secondary btn-sm">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
             @endif
         @endauth
     @endif
@@ -138,16 +134,16 @@
         <div id="main"></div>
 
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
-        <hr>
-        <h5 class="mt-12 text-center">Testing zone</h5>
+{{--        <hr>--}}
+{{--        <h5 class="mt-12 text-center">Testing zone</h5>--}}
 
         {{-- Это modal тест AJAX. Testing Routes--}}
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
-                    <button class="btn btn-success text-right" id="btn-get">Test FORM</button>
-                </div>
+{{--                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">--}}
+{{--                    <button class="btn btn-success text-right" id="btn-get">Test FORM</button>--}}
+{{--                </div>--}}
 
                 <div class="modal fade" id="formModal" aria-hidden="true">
                     <div class="modal-dialog">

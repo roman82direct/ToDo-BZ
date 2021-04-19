@@ -10,23 +10,22 @@ export const loadTasks = (list) => ({
             'credentials': 'same-origin'
                 },
         types: [
-            'LOAD_TASKS_REQUEST', 
+            'LOAD_TASKS_REQUEST',
             {
                 type: 'LOAD_TASKS_SUCCESS',
                 payload: async (action, state, responce) => {
                     try {
                         const res = await getJSON(responce);
-                        console.log(res);
+                         console.log('Tasks: '+res);
                         return { data: res };
-                        //return { data: JSON.parse(res) };
                     }
                     catch(err) {
                       console.log(err);
                       return { data: { name: 'System', text: 'Load tasks failed' } };
                     }
-              
+
                 },
-            }, 
+            },
             'LOAD_TASKS_FAILURE'
         ]
 
@@ -59,7 +58,7 @@ export const addTask = (name, description, list_id, term_id, repeat_id, cronTime
                       console.log(err);
                       return { data: { name: 'System', text: 'ADD Task failed' } };
                     }
-              
+
                 },
             },
             'ADD_TASK_FAILURE',

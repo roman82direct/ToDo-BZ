@@ -7,18 +7,7 @@ import classNames from "classnames";
 import { withStyles } from "@material-ui/core";
 import NavBar from "@logged_in/components/navigation/NavBar";
 import styles from "./style";
-// const styles = (theme) => ({
-//     main: {
-//       marginLeft: theme.spacing(28),
-//       transition: theme.transitions.create(["width", "margin"], {
-//         easing: theme.transitions.easing.sharp,
-//         duration: theme.transitions.duration.leavingScreen,
-//       }),
-//       [theme.breakpoints.down("xs")]: {
-//         marginLeft: 0,
-//       },
-//     },
-// });
+
 
 class MainPage extends Component {
     constructor(props) {
@@ -55,11 +44,3 @@ class MainPage extends Component {
 export default withStyles(styles, { withTheme: true })(MainPage);
 
 
-// return (
-//     <div className="main-page">
-//         <ListsPredefined userId={ this.state.userId }/>
-//         <ListsUser userId={ this.state.userId }/>
-//         <Tasks userId={ this.state.userId } listId={ this.props.listId }/>
-//         <Footer />
-//     </div>
-// );

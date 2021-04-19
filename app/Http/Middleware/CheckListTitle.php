@@ -17,11 +17,10 @@ class CheckListTitle
      */
     public function handle(Request $request, Closure $next)
     {
-        $countLists = Todolist::where('user_id', $request->get('user_id'))
+        $count = Todolist::where('user_id', $request->get('user_id'))
             ->where('name', $request->get('name'))
             ->count();
-        $exists = ($countLists > 0) ? true : false;
-        if ($exists){
+        if ($count > 0){
             abort(400, 'Already exists');
         }
 

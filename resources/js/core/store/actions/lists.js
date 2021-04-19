@@ -7,15 +7,13 @@ export const loadLists = (route) => ({
         types: [
             'LOAD_LISTS_REQUEST',
             {
-                type: (route === '/api/lists/predefined/0') ? 'LOAD_LISTS_SUCCESS' : 'LOAD_PREDEFINED_LISTS_SUCCESS',
+                type: (route === '/api/lists?filter=0') ? 'LOAD_LISTS_SUCCESS' : 'LOAD_PREDEFINED_LISTS_SUCCESS',
                 payload: async (action, state, response) => {
                     try{
                         const result = await getJSON(response);
                         if (!result) {
                             console.log('Ничего не найдено')
-                            // return { data: result };
                         }
-                            console.log('Enable lists ' + response.status)
                             return { data: result };
                     }
                     catch (e) {

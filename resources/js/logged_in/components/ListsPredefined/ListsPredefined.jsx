@@ -53,7 +53,7 @@ class ListsPredefined extends Component {
     }
 
     componentDidMount() {
-        this.props.loadLists('/api/lists/predefined/1');
+        this.props.loadLists('/api/lists?filter=1');
         // fetch('/api/lists/predefined/1', {
         //     headers: {
         //         "Content-Type": "application/json",
@@ -107,7 +107,7 @@ class ListsPredefined extends Component {
                         <ListItemIcon className={classes.justifyCenter}>
                             <ListAltIcon />
                         </ListItemIcon>
-                        <ListItemText primary={elem.name + ' / id = ' + elem.id} />
+                        <ListItemText primary={elem.name} />
                     </ListItem>
                 </Tooltip>
             </Link>
