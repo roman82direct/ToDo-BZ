@@ -30,6 +30,12 @@ return [
 
     'disks' => [
 
+        //настройка лога отправки почты
+        'mail_logs' => [
+            'driver' => 'local',
+            'root' => storage_path('app/logs'),
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

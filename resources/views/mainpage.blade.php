@@ -134,58 +134,71 @@
         <div id="main"></div>
 
         {{----------------------------------------Все, что ниже - ДЛЯ ТЕСТОВ------------------------------------------}}
-{{--        <hr>--}}
+        <hr>
 {{--        <h5 class="mt-12 text-center">Testing zone</h5>--}}
 
         {{-- Это modal тест AJAX. Testing Routes--}}
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
-{{--                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">--}}
-{{--                    <button class="btn btn-success text-right" id="btn-get">Test FORM</button>--}}
-{{--                </div>--}}
+                <div class="p-2 flex-shrink-0 bd-highlight d-md-flex justify-content-md-end">
+                    <button class="btn btn-success text-right" id="btn-get">Создать задачу</button>
+                </div>
 
                 <div class="modal fade" id="formModal" aria-hidden="true">
                     <div class="modal-dialog">
-                        <div class="modal-content">
+                        <div style="margin-top: 25%" class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title" id="formModalLabel">ToDo Task</h4>
                             </div>
                             <div class="modal-body">
                                 <form id="myForm" name="myForm" class="form-horizontal">
                                     <div class="form-group">
-                                        <label>User_id</label>
+{{--                                        <label>User_id</label>--}}
                                         <input type="hidden" class="form-control" id="user_id" name="user_id" value={{Auth::id()}}>
                                     </div>
-                                    <div class="form-group">
-                                        <label>List_id</label>
-                                        <input type="text" class="form-control" id="list_id" name="list_id">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>list_Name</label>
-                                        <input type="text" class="form-control" id="list_name" name="name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>pattern_id</label>
-                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>predefined</label>
-                                        <input type="text" class="form-control" id="predefined" name="predefined">
-                                    </div>
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>List_id</label>--}}
+{{--                                        <input type="hidden" class="form-control" id="list_id" name="list_id" value="61">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>list_Name</label>--}}
+{{--                                        <input type="text" class="form-control" id="list_name" name="name">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>pattern_id</label>--}}
+{{--                                        <input type="text" class="form-control" id="pattern_id" name="pattern_id">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label>predefined</label>--}}
+{{--                                        <input type="text" class="form-control" id="predefined" name="predefined">--}}
+{{--                                    </div>--}}
 
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>Task_id</label>--}}
 {{--                                        <input type="text" class="form-control" id="task_id" name="task_id">--}}
 {{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>Task_name</label>--}}
-{{--                                        <input type="text" class="form-control" id="task_name" name="task_name">--}}
-{{--                                    </div>--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label>Task_description</label>--}}
-{{--                                        <input type="text" class="form-control" id="task_description" name="description">--}}
-{{--                                    </div>--}}
+                                    <div class="form-group">
+                                        <label>Выберите список</label>
+                                        <select class="form-select" id="list_id" name="list_id">
+                                            {{ $lists = \App\Models\Todolist::where('user_id', \Illuminate\Support\Facades\Auth::id())->get() }}
+                                            @foreach($lists as $list)
+                                                <option value="{{ $list->id }}">{{ $list->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Название задачи</label>
+                                        <input type="text" class="form-control" id="task_name" name="task_name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Описание задачи</label>
+                                        <input type="text" class="form-control" id="task_description" name="description">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Срок исполнения</label>
+                                        <input type="datetime-local" class="form-control" id="deadline" name="deadline">
+                                    </div>
 {{--                                    <div class="form-group">--}}
 {{--                                        <label>Term_id</label>--}}
 {{--                                        <input type="text" class="form-control" id="term_id" name="term_id">--}}
@@ -202,12 +215,12 @@
 {{--                                        <label>diRemind_id</label>--}}
 {{--                                        <input type="text" class="form-control" id="dicRemind_id" name="dicRemind_id">--}}
 {{--                                    </div>--}}
-{{--                                    <div class="mt-4">--}}
-{{--                                        <div class="form-check">--}}
-{{--                                            <label for="favorites" class="form-check-label">Favorites</label>--}}
-{{--                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
+                                    <div class="mt-4">
+                                        <div class="form-check">
+                                            <label for="favorites" class="form-check-label">Favorites</label>
+                                            <input class="form-check-input" name="favorites" type="checkbox" id="favorites">
+                                        </div>
+                                    </div>
 
                                 </form>
                             </div>

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -29,6 +30,7 @@ class Task extends Model
         'name',
         'description',
         'deadline',
+        'is_alert',
         'list_id',
         'term_id',
         'repeat_id',
@@ -44,5 +46,19 @@ class Task extends Model
             ->where('todolists.user_id', $user_id)
             ->orderBy('tasks.created_at')
             ->get();
+    }
+
+    static function getOverduedTasks()
+    {
+        return Task::leftJoin('todolists', 'tasks.list_id', '=', 'todolists.id')
+            ->select('todolists.user_id', 'tasks.id', 'tasks.name', 'tasks.description', 'tasks.deadline')
+            ->where('tasks.deadline', '<', Carbon::now())
+            ->where('is_alert', 0)
+            ->orderBy('tasks.deadline')
+                ->leftJoin('users', 'todolists.user_id', '=', 'users.id')
+                ->select('users.id as user_id', 'users.name as user_name', 'users.email', 'tasks.id as task_id',
+                                 'tasks.name as task_name', 'tasks.description', 'tasks.deadline')
+                ->orderBy('user_id')
+                ->get();
     }
 }
